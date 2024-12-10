@@ -25,41 +25,39 @@ This repository contains my practice and solutions for Data Structures and Algor
 - Resources (e.g., links to LeetCode, books, or tutorials)
 -->
 
-DSA-Practice/  \
-├── Java/\
-│   ├── LeetCode/\
-│   │   ├── Array/\
-│   │   ├── LinkedList/\
-│   │   ├── Trees/\
-│   │   ├── Strings/\
-│   │   └── Others/\
-│   ├── Books/\
-│   │   ├── RobertSedgewick/\
-│   │   ├── CrackingTheCodingInterview/\
-│   │   └── Others/\
-│   └── CustomProblems/\
-├── Python/\
-│   ├── LeetCode/\
-│   │   ├── Array/\
-│   │   ├── LinkedList/\
-│   │   ├── Trees/\
-│   │   ├── Strings/\
-│   │   └── Others/\
-│   ├── Books/\
-│   │   ├── RobertSedgewick/\
-│   │   ├── CrackingTheCodingInterview/\
-│   │   └── Others/\
-│   └── CustomProblems/\
-├── Cpp/\
-│   ├── LeetCode/\
-│   │   ├── Array/\
-│   │   ├── LinkedList/\
-│   │   ├── Trees/\
-│   │   ├── Strings/\
-│   │   └── Others/\
-│   ├── Books/\
-│   │   ├── RobertSedgewick/\
-│   │   ├── CrackingTheCodingInterview/\
-│   │   └── Others/\
-│   └── CustomProblems/\
-└── README.md\
+    ├── 01-Java/
+    │   ├── 01-LeetCode/
+    │   │   ├── Arrays/
+    │   │   ├── Trees/
+    │   │   └── ...
+    │   ├── 02-Books/
+    │   │   ├── Algorithms_by_Robert_Sedgewick/
+    │   │   └── ...
+    │   ├── 03-OnlineCourses/
+    │   │   ├── CourseName1/
+    │   │   ├── CourseName2/
+    │   │   └── ...
+    │   └── 04-Misc/
+    ├── 02-Python/
+    │   ├── 01-LeetCode/
+    │   │   ├── Arrays/
+    │   │   ├── Trees/
+    │   │   └── ...
+    │   ├── 02-Books/
+    │   │   ├── ...
+    │   ├── 03-OnlineCourses/
+    │   │   ├── CourseName1/
+    │   │   └── ...
+    │   └── 04-Misc/
+    └── 03-Cpp/
+    │   ├── 01-LeetCode/
+    │   │   ├── Arrays/
+    │   │   ├── Trees/
+    │   │   └── ...
+    │   ├── 02-Books/
+    │   │   ├── ...
+    │   ├── 03-OnlineCourses/
+    │   │   ├── CourseName1/
+    │   │   └── ...
+    │   └── 04-Misc/
+    └── Readme.md
