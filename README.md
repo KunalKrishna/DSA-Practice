@@ -25,3 +25,41 @@ This repository contains my practice and solutions for Data Structures and Algor
 - Resources (e.g., links to LeetCode, books, or tutorials)
 -->
 
+DSA-Practice/  \
+├── Java/\
+│   ├── LeetCode/\
+│   │   ├── Array/\
+│   │   ├── LinkedList/\
+│   │   ├── Trees/\
+│   │   ├── Strings/\
+│   │   └── Others/\
+│   ├── Books/\
+│   │   ├── RobertSedgewick/\
+│   │   ├── CrackingTheCodingInterview/\
+│   │   └── Others/\
+│   └── CustomProblems/\
+├── Python/\
+│   ├── LeetCode/\
+│   │   ├── Array/\
+│   │   ├── LinkedList/\
+│   │   ├── Trees/\
+│   │   ├── Strings/\
+│   │   └── Others/\
+│   ├── Books/\
+│   │   ├── RobertSedgewick/\
+│   │   ├── CrackingTheCodingInterview/\
+│   │   └── Others/\
+│   └── CustomProblems/\
+├── Cpp/\
+│   ├── LeetCode/\
+│   │   ├── Array/\
+│   │   ├── LinkedList/\
+│   │   ├── Trees/\
+│   │   ├── Strings/\
+│   │   └── Others/\
+│   ├── Books/\
+│   │   ├── RobertSedgewick/\
+│   │   ├── CrackingTheCodingInterview/\
+│   │   └── Others/\
+│   └── CustomProblems/\
+└── README.md\
