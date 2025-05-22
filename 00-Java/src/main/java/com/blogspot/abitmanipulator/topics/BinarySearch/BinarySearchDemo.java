@@ -5,51 +5,86 @@ import java.util.Arrays;
 public class BinarySearchDemo {
     public static void main(String[] args) {
         System.out.println("Binary Search : PoC!!!");
-        int[] arr = {1, 2, 4, 4, 4, 6, 8};
+        int[] arr = {1, 1, 1, 2, 4, 4, 4, 6, 8, 8, 8, 9};
         System.out.println("arr = "+ Arrays.toString(arr));
         System.out.println("**********************");
 
         int t = 0;
+        int max = arr[arr.length-1]+1;
 
         System.out.println("\nCASE : i < j");
         System.out.println("________________");
-        System.out.println("❌i < j  t = m, j = m       Infinite Loop ");
-//        for (t = 0; t <= 9; t++) {
+        System.out.println("i < j | t = m, j = m  \tInfinite Loop ♾\uFE0F ❌ ");
+//        for (t = 0; t <= max; t++) {
 //            System.out.println("\n[key] = "+t);
 //            int i = binarySearch1a(arr, t);
 //            printArr(arr);
 //            System.out.println(t + " found at index: " + i );
+//
+//            verifyIndex(arr, t, i);  // test
 //        }
 
         System.out.println("\n________________");
-        System.out.println("i < j  i = m+1, j = m        Left-biased Lower-bound; needs post-check");
-        for (t = 0; t <= 9; t++) {
+        System.out.println("i < j | i = m+1, j = m\tLeft-biased Lower-bound; needs post-check");
+        for (t = 0; t <= max; t++) {
             System.out.println("\n[key] = "+t);
+
+            // returned by custom binary search
             int i = binarySearch1b(arr, t);
             printArr(arr);
-            System.out.println(t + " found at index: " + i );
+            System.out.print(t + " found at index: " + i );
+
+            verifyIndex(arr, t, i); // test
         }
 
         System.out.println("\n________________");
-        System.out.println("i < j  i = m,  j = m - 1     Upper-bound (with mid-up rounding) Needs care");
-//        for (t = 0; t <= 9; t++) {
+        System.out.println("i < j | i = m+1, j = m \tLeft-biased Lower-bound; with POST-CHECK");
+        for (t = 0; t <= max; t++) {
+            System.out.println("\n[key] = "+t);
+
+            // returned by custom binary search
+            int i = binarySearch1bPostProcessing(arr, t);
+            printArr(arr);
+            System.out.print(t + " found at index: " + i );
+
+            verifyIndex(arr, t, i); // test
+        }
+
+        System.out.println("\n________________");
+        System.out.println("i < j | i = m,  j = m-1\tInfinite loop ♾\uFE0F ❌");
+//        for (t = 0; t <= max; t++) {
 //            System.out.println("\n[key] = "+t);
 //            int i = binarySearch1c(arr, t);
 //            printArr(arr);
 //            System.out.println(t + " found at index: " + i );
+//
+//            verifyIndex(arr, t, i); // test
 //        }
 
         System.out.println("\n________________");
-        System.out.println("❌i < j  i = m + 1, j = m - 1  Skips target Over-narrowing ");
+        System.out.println("i < j  i = m + 1, j = m - 1  Skips target Over-narrowing❌");
         for (t = 0; t <= 9; t++) {
             System.out.println("\n[key] = "+t);
             int i = binarySearch1d(arr, t);
             printArr(arr);
-            System.out.println(t + " found at index: " + i );
+            System.out.print(t + " found at index: " + i );
+
+            verifyIndex(arr, t, i); // test
         }
 
         System.out.println("\nCASE : i <= j");
         System.out.println("------------");
+    }
+
+    private static void verifyIndex(int[] arr, int t, int i) {
+        int idx = Arrays.binarySearch(arr, t);
+        //same sign; arr :[1, 2, 4, 4, 4, 6, 8] key=4 util might return any
+        if((i == 0 && idx >= i) || (i == arr.length-1 && idx <= i) || (i * idx > 0) ) {
+            System.out.print(" ✅");
+        } else {
+            System.out.print(" ❌ " + idx);
+        }
+        System.out.println();
     }
 
     /**
@@ -78,7 +113,7 @@ public class BinarySearchDemo {
     }
 
     /**
-     * i = m + 1, j = m | i < j ✅ Left-biased	Lower-bound; needs post-check
+     * i = m + 1, j = m | i < j ❌  Left-biased	Lower-bound; w/o post-check
      * @param arr non-decreasing array with "repetition allowed
      * @param t the key element
      * @return index if k exists in the arr, -1 otherwise
@@ -97,6 +132,34 @@ public class BinarySearchDemo {
             } else {
                 r = m;
             }
+        }
+        return res;
+    }
+
+    /**
+     * i = m + 1, j = m | i < j ✅ Left-biased Lower-bound; needs post-check
+     * @param arr non-decreasing array with "repetition allowed
+     * @param t the key element
+     * @return index if k exists in the arr, -1 otherwise
+     */
+    public static int binarySearch1bPostProcessing(int[] arr, int t) {
+        System.out.println("binarySearch1bPostProcessing: i = m + 1, j = m | i < j");
+        int l = 0, r = arr.length-1, res = -1;
+        int m = l + ( r - l ) / 2;
+        System.out.println("\t l = "+ l + " [M = " + m + "] r = "+ r);
+        while( l < r) {
+            if ( arr[m] < t ) {
+                l = m + 1;
+                System.out.println("\t l = "+ l + " [M = " + m + "] r = "+ r);
+            } else { //arr[m] >= t
+                r = m;
+                System.out.println("\t l = "+ l + " [M = " + m + "] r = "+ r);
+            }
+            m = l + ( r - l ) / 2;
+        }
+        // post-processing
+        if ( arr[l] == t ) {
+            res = l; //return l; System.out.println("First occurrence at index: " + l);
         }
         return res;
     }
