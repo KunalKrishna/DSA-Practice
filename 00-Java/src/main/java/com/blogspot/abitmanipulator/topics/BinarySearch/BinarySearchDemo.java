@@ -9,34 +9,35 @@ public class BinarySearchDemo {
         int[] arr = {1, 1, 1, 2, 4, 4, 4, 6, 8, 8, 8, 9}; // repeating elements (non-decreasing array)
 //        int[] arr = {2}; // single element array
         System.out.println("arr = "+ Arrays.toString(arr));
-        System.out.println("**********************");
+        System.out.println("********************************************");
 
         int max = arr[arr.length-1]+1;
         System.out.println("\nCASE : i < j");
 
-//        balancedBinarySearchAttempt(max, arr);
-//
-//        leftBiasedBinarySearchAttempt(arr, max);
-//
-//        leftBiasedBinarySearch(max, arr);
-//
-//        rightBiasedBinarySearchAttempt(max, arr);
+        trivialBinarySearchAttempt(max, arr);
 
-        rightBiasedBinarySearchF(max, arr);
+        leftBiasedBinarySearchAttempt(arr, max);
 
-        binarySearchRush(max, arr);
+        leftBiasedBinarySearch_Correct(max, arr);
+
+        rightBiasedBinarySearchAttempt(max, arr);
+
+        rightBiasedBinarySearch_Correct(max, arr);
+
+        binarySearchRush_Attempt(max, arr);
     }
 
     /* WRAPPER FUNCTIONS */
 
-    private static void balancedBinarySearchAttempt(int max, int[] arr) {
+    private static void trivialBinarySearchAttempt(int max, int[] arr) {
         int t = 0;
-        System.out.println("________________");
-        System.out.println("i < j | i = m, j = m  \t♾\uFE0FInfinite Loop♾\uFE0F");
+        System.out.println("________________________________");
+        System.out.println("i < j | i = m, j = m | \t♾\uFE0FInfinite Loop♾\uFE0F");
+        System.out.println("________________________________");
         boolean[] reached = new boolean[arr.length];
         for (t = 0; t <= max; t++) {
             System.out.println("\n[key] = " + t);
-            int i = binarySearch1a(arr, t, reached); // returned by custom binary search
+            int i = binarySearch1a(arr, t, reached); // index returned by custom binary search
             printArr(arr);
             System.out.print("\n[key] = " + t + " found at index: " + i );
             verifyIndex(arr, t, i);  // test
@@ -46,8 +47,9 @@ public class BinarySearchDemo {
 
     private static void leftBiasedBinarySearchAttempt(int[] arr, int max) {
         int t = 0;
-        System.out.println("\n________________");
-        System.out.println("i < j | i = m+1, j = m\tLeft-biased Lower-bound; needs post-check");
+        System.out.println("\n________________________________");
+        System.out.println("i < j | i = m+1, j = m | \tLeft-biased Lower-bound; needs post-check");
+        System.out.println("\n________________________________");
         boolean[] reached = new boolean[arr.length];
         for (t = 0; t <= max; t++) {
             System.out.println("\n[key] = " + t);
@@ -59,10 +61,11 @@ public class BinarySearchDemo {
         printReached(reached); //after finding every element every cell should be checked at least once.
     }
 
-    private static void leftBiasedBinarySearch(int max, int[] arr) {
+    private static void leftBiasedBinarySearch_Correct(int max, int[] arr) {
         int t = 0;
-        System.out.println("\n________________");
-        System.out.println("i < j | i = m+1, j = m \tLeft-biased Lower-bound; with POST-CHECK");
+        System.out.println("\n________________________________");
+        System.out.println("i < j | i = m+1, j = m  | \tLeft-biased Lower-bound; with POST-CHECK");
+        System.out.println("\n________________________________");
         boolean[] reached = new boolean[arr.length];
         for (t = 0; t <= max; t++) {
             System.out.println("\n[key] = "+t);
@@ -76,8 +79,9 @@ public class BinarySearchDemo {
 
     private static void rightBiasedBinarySearchAttempt(int max, int[] arr) {
         int t = 0;
-        System.out.println("\n________________");
-        System.out.println("i < j | i = m,  j = m-1\tInfinite loop ♾\uFE0F ❌");
+        System.out.println("\n________________________________");
+        System.out.println("i < j | i = m,  j = m-1 | \tInfinite loop ♾\uFE0F ❌");
+        System.out.println("\n________________________________");
         boolean[] reached = new boolean[arr.length];
         for (t = 0; t <= max; t++) {
             System.out.println("\n[key] = " + t);
@@ -89,10 +93,11 @@ public class BinarySearchDemo {
         printReached(reached); //after finding every element every cell should be checked at least once.
     }
 
-    private static void rightBiasedBinarySearchF(int max, int[] arr) {
+    private static void rightBiasedBinarySearch_Correct(int max, int[] arr) {
         int t = 0;
-        System.out.println("\n________________");
-        System.out.println("i < j | i = m,  j = m-1\t Upper-bound (with mid-up rounding) Needs care ✅");
+        System.out.println("\n________________________________");
+        System.out.println("i < j | i = m,  j = m-1 | \t Upper-bound (with mid-up rounding) Needs care ✅");
+        System.out.println("\n________________________________");
         boolean[] reached = new boolean[arr.length];
         for (t = 0; t <= max; t++) {
             System.out.println("\n[key] = "+t);
@@ -104,10 +109,11 @@ public class BinarySearchDemo {
         printReached(reached); //after finding every element every cell should be checked at least once.
     }
 
-    private static void binarySearchRush(int max, int[] arr) {
+    private static void binarySearchRush_Attempt(int max, int[] arr) {
         int t = 0;
-        System.out.println("\n________________");
-        System.out.println("i < j  i = m + 1, j = m - 1  Skips target Over-narrowing❌");
+        System.out.println("\n________________________________");
+        System.out.println("i < j  i = m + 1, j = m - 1 | Skips target Over-narrowing❌");
+        System.out.println("\n________________________________");
         boolean[] reached = new boolean[arr.length];
         for (t = 0; t <= max; t++) {
             System.out.println("\n[key] = "+t);
@@ -132,19 +138,19 @@ public class BinarySearchDemo {
         int l = 0, r = arr.length-1, res = -1, counter = 0;
         while( l < r) {
             int m = l + ( r - l ) / 2;
+            counter++;
             reached[m] = true;
             System.out.println("\t l = "+ l + " M = " + m + " r = "+ r);
             if ( arr[m] == t ) {
-                res = m;
-                return  res;
-            } else if (arr[m] < t ) {
-                l = m; counter++;
-            } else {
-                r = m; counter++;
+                return  m;
+            } else if ( arr[m] < t ) {
+                l = m;
+            } else { // t < arr[m]
+                r = m;
             }
-            if(counter >= arr.length) {
+            if(counter >= arr.length) { // binary search runs max (log n) iteration
                 System.out.println("Entered ♾\uFE0FInfinite Loop♾\uFE0F");
-                return res; // binary search runs max (log n) iteration
+                return res;
             }
         }
         return  res;
@@ -248,8 +254,8 @@ public class BinarySearchDemo {
         int l = 0, r = arr.length-1, res = -1;
         while( l < r) {
 //            int m =  ( l + r ) / 2; // results in infinite loop when l == m
-//            int m =  ( l + r + 1 ) / 2; // Right-biased mid to avoid infinite loop when l == m
-            int m =  l + ( r - l + 1 ) / 2; // Right-biased mid to avoid infinite loop when l == m
+//            int m =  ( l + r + 1 ) / 2; // Right-biased mid to avoid infinite loop when l == m (susceptible to int overflow)
+            int m =  l + ( r - l + 1 ) / 2; // Right-biased mid to avoid infinite loop when l == m and avoid int overflow
             reached[m] = true;
             System.out.println("\t l = "+ l + " M = " + m + " r = "+ r);
             if ( t < arr[m] ) {
