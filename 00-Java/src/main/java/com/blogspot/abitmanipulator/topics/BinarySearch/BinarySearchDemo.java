@@ -14,13 +14,13 @@ public class BinarySearchDemo {
         int max = arr[arr.length-1]+1;
         System.out.println("\nCASE : i < j");
 
-        balancedBinarySearchAttempt(max, arr);
-
-        leftBiasedBinarySearchAttempt(arr, max);
-
-        leftBiasedBinarySearch(max, arr);
-
-        rightBiasedBinarySearchAttempt(max, arr);
+//        balancedBinarySearchAttempt(max, arr);
+//
+//        leftBiasedBinarySearchAttempt(arr, max);
+//
+//        leftBiasedBinarySearch(max, arr);
+//
+//        rightBiasedBinarySearchAttempt(max, arr);
 
         rightBiasedBinarySearchF(max, arr);
 
@@ -201,7 +201,7 @@ public class BinarySearchDemo {
         if ( arr[l] == t ) { // l = r = m & A[m] = t
             reached[l] = true;
             System.out.println("First occurrence of "+ t +" at index: " + l);
-            return l; // res = l;
+            return l; // return l = r = m (any); // res = l
         }
         return res; //error
     }
@@ -247,18 +247,24 @@ public class BinarySearchDemo {
         System.out.println("binarySearch1cRightBiased: i = m, j = m - 1 | i < j");
         int l = 0, r = arr.length-1, res = -1;
         while( l < r) {
-            int m =  ( l + r + 1 ) / 2; // Right-biased mid to avoid infinite loop when l == m
+//            int m =  ( l + r ) / 2; // results in infinite loop when l == m
+//            int m =  ( l + r + 1 ) / 2; // Right-biased mid to avoid infinite loop when l == m
+            int m =  l + ( r - l + 1 ) / 2; // Right-biased mid to avoid infinite loop when l == m
             reached[m] = true;
             System.out.println("\t l = "+ l + " M = " + m + " r = "+ r);
-            if ( arr[m] <= t ) {
-                l = m;     // move right including m
-            } else {
+            if ( t < arr[m] ) {
                 r = m - 1; // move left excluding m
+            } else { // t <= arr[m]
+                l = m;    // move right including m
             }
         }
-        System.out.println("\t l = "+ l + " M = [] r = "+ r);
+        System.out.println("\t l = "+ l + " M = [] r = "+ r); // l = r
         // post-check (optional if A[i] could not be t)
-        if (arr[l] == t) return l;
+        if (arr[l] == t) {
+            reached[l] = true;
+            System.out.println("Last occurrence of "+ t +" at index: " + l);
+            return l;
+        }
         return  res;
     }
 
@@ -279,9 +285,9 @@ public class BinarySearchDemo {
                 res = m;
                 return  res;
             } else if (arr[m] < t ) {
-                l = m+1;
+                l = m + 1;
             } else {
-                r = m-1;
+                r = m - 1;
             }
         }
         return  res;
