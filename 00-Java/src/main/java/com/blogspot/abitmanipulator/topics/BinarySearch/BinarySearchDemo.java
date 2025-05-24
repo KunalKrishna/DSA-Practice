@@ -27,7 +27,6 @@ public class BinarySearchDemo {
     }
 
     // WRAPPER FUNCTIONS
-
     private static void trivialBinarySearchAttempt(int[] arr, int max) {
         System.out.println("\n________________________________");
         System.out.println("i < j | i = m, j = m | \t♾\uFE0FInfinite Loop♾\uFE0F");
@@ -119,7 +118,6 @@ public class BinarySearchDemo {
     }
 
     // BINARY SEARCH VARIATIONS
-
     /**
      * i= m, j = m | i < j ❌ No progress	Infinite loop
      * @param arr non-decreasing array with "repetition allowed
@@ -183,13 +181,15 @@ public class BinarySearchDemo {
      * @return index if k exists in the arr, -1 otherwise
      */
     private static int binarySearch1bPostProcessing(int[] arr, int t, boolean[]reached) {
-        String methodName = new Object(){}.getClass().getEnclosingMethod().getName();
-        System.out.println(methodName + ": i = m + 1, j = m | i < j");
+        System.out.println(new Object(){}.getClass().getEnclosingMethod().getName() + ": i = m + 1, j = m | i < j");
         int l = 0, r = arr.length-1, res = -1;
         while( l < r) {
             int m = l + ( r - l ) / 2;
             System.out.println("\t l = "+ l + " [M = " + m + "] r = "+ r);
             reached[m] = true; //[1, 1, 1, 2, 4, 4, 4, 6, 8, 8, 8, 9 ] : for key = 1(4 or 8) only leftmost index reachability guaranteed !
+            /*if (arr[m] == t ) {
+                return m;
+            } else */
             if ( arr[m] < t ) {
                 l = m + 1;
             } else { // arr[m] >= t
@@ -213,7 +213,7 @@ public class BinarySearchDemo {
      * @return index if k exists in the arr, -1 otherwise
      */
     private static int binarySearch1c(int[] arr, int t, boolean[]reached){
-        System.out.println("binarySearch1c: i = m, j = m - 1 | i < j");
+        System.out.println(new Object(){}.getClass().getEnclosingMethod().getName() + ": i = m, j = m - 1 | i < j");
         int l = 0, r = arr.length-1, res = -1, counter = 0;
         while( l < r) {
             int m = l + ( r - l ) / 2;
@@ -244,7 +244,7 @@ public class BinarySearchDemo {
      * @return index if k exists in the arr, -1 otherwise
      */
     private static int binarySearch1cRightBiased(int[] arr, int t, boolean[]reached){
-        System.out.println("binarySearch1cRightBiased: i = m, j = m - 1 | i < j");
+        System.out.println(new Object(){}.getClass().getEnclosingMethod().getName() + ": i = m, j = m - 1 | i < j");
         int l = 0, r = arr.length-1, res = -1;
         while( l < r) {
 //            int m =  ( l + r ) / 2; // results in infinite loop when l == m
@@ -293,7 +293,6 @@ public class BinarySearchDemo {
     }
 
     // UTILITY FUNCTIONS
-
     public static void printArr(int[] arr) {
         System.out.print("idx :[");
         for(int i=0; i<arr.length; i++) {
