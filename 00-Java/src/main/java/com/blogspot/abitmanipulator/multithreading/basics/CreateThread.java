@@ -8,11 +8,30 @@ Basics of Threads
 
 public class CreateThread {
     public static void main(String[] args) {
-        ThreadOne threadOne = new ThreadOne();
+        // 1. extending Thread class
+        ThreadOne threadOne = new ThreadOne(60);
         threadOne.start();
 
-        Thread threadTwo = new Thread (new ThreadTwoRunnable());
+        // 2. Implementing Runnable interface
+        Thread threadTwo = new Thread (new ThreadTwoRunnable(50));
         threadTwo.start();
+
+        // 2a. pass an anonymous inner class
+        Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("Hello from inner class!");
+            }
+        });
+        t.start();;
+
+        // 2b. lambda expression: Runnable = a functional interface (only one method run()) ==> replace the anonymous inner class
+        Thread worker = new Thread(()->{
+            for(int i = 0; i < 100; i++) {
+                System.out.println("lambda expression : " + i);
+            }
+        });
+        worker.start();
     }
 }
 
@@ -39,7 +58,7 @@ class ThreadOne extends Thread {
 class ThreadTwoRunnable implements Runnable {
     private int count = 0;
     ThreadTwoRunnable( ){
-        this.count = 5; // default
+        this.count = 30; // default
     }
 
     ThreadTwoRunnable(int count){
